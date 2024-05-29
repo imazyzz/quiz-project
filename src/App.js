@@ -4,6 +4,7 @@ import AgeQuestion from "./AgeQuestion";
 import ProgressPage from "./ProgressPage";
 import ProgressBar from "./ProgressBar";
 import Header from "./Header";
+import SendForm from "./SendForm";
 import "./App.css";
 import QuoteComponent from "./QuoteComponent";
 import SelectableOptions from "./SelectableOptions";
@@ -409,14 +410,7 @@ function App() {
             onContinue={handleContinue}
           />
         )}
-        {step === 30 && (
-          <ProgressPage
-            title="Pronto para ver seu plano?"
-            subtitle="Sabemos que às vezes as coisas ficam complicadas, por isso projetamos o Dopamina dolares para funcionar com apenas 5 minutos do seu tempo dedicado a ele todos os dias! Pequenas mudanças levam a grandes resultados"
-            image={power}
-            onContinue={handleContinue}
-          />
-        )}
+        {step === 30 && <SendForm />}
       </div>
     </div>
   );

@@ -1,5 +1,9 @@
 import React from "react";
-import { PiGenderFemale, PiGenderMale, PiGenderNonbinary } from "react-icons/pi"
+import {
+  PiGenderFemale,
+  PiGenderMale,
+  PiGenderNonbinary,
+} from "react-icons/pi";
 import "./GenderSelection.css";
 
 const GenderSelection = ({ onGenderSelect }) => {
@@ -19,15 +23,15 @@ const GenderSelection = ({ onGenderSelect }) => {
         <h3 className="gender-title">Selecione seu gênero para começar</h3>
         <div className="gender-buttons">
           <button onClick={() => onGenderSelect("Feminino")}>
-            <PiGenderFemale size={50} />
+            <PiGenderFemale size={50} className="icon" />
             <span>Feminino</span>
           </button>
           <button onClick={() => onGenderSelect("Masculino")}>
-            <PiGenderMale size={50} />
+            <PiGenderMale size={50} className="icon" />
             <span>Masculino</span>
           </button>
           <button onClick={() => onGenderSelect("Não binário")}>
-            <PiGenderNonbinary size={50} />
+            <PiGenderNonbinary size={50} className="icon" />
             <span>Não binário</span>
           </button>
         </div>

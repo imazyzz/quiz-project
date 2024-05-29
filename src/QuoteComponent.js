@@ -26,7 +26,7 @@ const QuoteComponent = ({ header, body, onQuoteComponent }) => {
           >
             <path
               d="M23.6 8.6L11.8 20.4 6.4 15"
-              stroke="#499B92"
+              stroke="#8555d7"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
