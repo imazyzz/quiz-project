@@ -4,7 +4,7 @@ import "./SendForm.css";
 const SendForm = () => {
   return (
     <div className="app-form">
-      <h1 className="form-title">Preencha suas informações abaixo</h1>
+      <h1 className="form-title">Preencha Suas Informações Abaixo</h1>
       <p className="form-subtitle">
         Receba o resultado do seu quiz + 3 ebooks totalmente gratuitos!
       </p>
