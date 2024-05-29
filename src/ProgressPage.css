@@ -1,0 +1,57 @@
+.progress-page {
+  text-align: center;
+  padding: 20px;
+}
+
+.progress-page h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.progress-content {
+  margin-top: 20px;
+}
+
+.progress-content img {
+  width: 80%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.continue-button {
+  background-color: #8555d7;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.continue-button:hover {
+  background-color: #8555d7;
+}
+
+.progress-text {
+  line-height: 1.5;
+}
+
+.loading-circle {
+  margin: 20px auto;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #8555d7;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

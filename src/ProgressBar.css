@@ -1,0 +1,33 @@
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Mantém as bolinhas uniformemente distribuídas */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.progress-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ddd;
+  z-index: 1; /* Mantém as bolinhas acima das linhas */
+}
+
+.progress-circle.filled {
+  background-color: #8555d7;
+}
+
+.progress-line-container {
+  flex-grow: 1; /* Permite que a linha ocupe todo o espaço disponível */
+  height: 2px;
+  margin: 0 5px; /* Reduz a margem para diminuir os espaços */
+  overflow: hidden;
+}
+
+.progress-line {
+  height: 100%;
+  background-color: #8555d7;
+  transition: width 0.3s ease; /* Adiciona uma transição suave ao preencher a linha */
+  width: 100%; /* Assegura que a linha preencha todo o container */
+}
