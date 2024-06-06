@@ -5,6 +5,7 @@ import ProgressPage from "./ProgressPage";
 import ProgressBar from "./ProgressBar";
 import Header from "./Header";
 import SendForm from "./SendForm";
+import ResultMessage from "./ResultMessage";
 import "./App.css";
 import QuoteComponent from "./QuoteComponent";
 import SelectableOptions from "./SelectableOptions";
@@ -21,6 +22,8 @@ import { FaStar } from "react-icons/fa";
 function App() {
   const [step, setStep] = useState(1);
   const totalSteps = 30;
+  const [responses, setResponses] = useState([]);
+  const [userName, setUserName] = useState("");
 
   const handleBackButtonClick = () => {
     if (step > 1) {
@@ -43,10 +46,46 @@ function App() {
     setStep(step + 1);
   };
 
-  // FUNCIONAMENTO DO SELECT VÁRIOS
+  // FUNCIONAMENTO DO SELECT VÁRIOS + SISTEMA DE PONTUAÇÃO
 
   const handleSelectionChange = (selectedOptions) => {
-    console.log("Selected options:", selectedOptions);
+    setResponses((prevResponses) => {
+      const newResponses = [...prevResponses];
+      newResponses[step - 19] = selectedOptions; // Ajuste o índice conforme necessário
+      return newResponses;
+    });
+  };
+
+  const calculateResult = () => {
+    const scoreMap = {
+      Nunca: 0,
+      Raramente: 1,
+      "Às vezes": 2,
+      Frequentemente: 3,
+      Sempre: 4,
+    };
+
+    const totalScore = responses.flat().reduce((acc, option) => {
+      if (option && option.label in scoreMap) {
+        return acc + scoreMap[option.label];
+      }
+      return acc;
+    }, 0);
+
+    if (totalScore <= 10) {
+      return "Baixos Níveis de Dopamina";
+    } else if (totalScore <= 20) {
+      return "Baixos Níveis de Atenção";
+    } else if (totalScore <= 30) {
+      return "Altos Níveis de Ansiedade";
+    } else {
+      return "Comportamentos Saudáveis";
+    }
+  };
+
+  const handleFormSubmit = (name) => {
+    setUserName(name);
+    setStep(step + 1); // Incrementa o passo
   };
 
   const handleContinue = () => {
@@ -83,11 +122,11 @@ function App() {
           <SelectableOptions
             question="Você se sente motivado ao iniciar novas tarefas ou projetos ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -96,62 +135,62 @@ function App() {
         )}
         {step === 5 && (
           <SelectableOptions
-          question="Você experimenta prazer e satisfação com suas atividades diárias ?"
-          options={[
-            { label: "Nunca", icon: <FaStar /> },
-            { label: "Raramente", icon: <FaStar /> },
-            { label: "Ás vezes", icon: <FaStar /> },
-            { label: "Frequentemente", icon: <FaStar /> },
-            { label: "Sempre", icon: <FaStar /> },
-          ]}
-          multiple={false}
-          onSelectionChange={handleSelectionChange}
-          onContinue={handleContinue}
-        />
+            question="Você experimenta prazer e satisfação com suas atividades diárias ?"
+            options={[
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
+            ]}
+            multiple={false}
+            onSelectionChange={handleSelectionChange}
+            onContinue={handleContinue}
+          />
         )}
         {step === 6 && (
           <SelectableOptions
-          question="Você sente necessidade de recompensas rápidas, como doces ou redes sociais, para se sentir bem ?"
-          options={[
-            { label: "Nunca", icon: <FaStar /> },
-            { label: "Raramente", icon: <FaStar /> },
-            { label: "Ás vezes", icon: <FaStar /> },
-            { label: "Frequentemente", icon: <FaStar /> },
-            { label: "Sempre", icon: <FaStar /> },
-          ]}
-          multiple={false}
-          onSelectionChange={handleSelectionChange}
-          onContinue={handleContinue}
+            question="Você sente necessidade de recompensas rápidas, como doces ou redes sociais, para se sentir bem ?"
+            options={[
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
+            ]}
+            multiple={false}
+            onSelectionChange={handleSelectionChange}
+            onContinue={handleContinue}
           />
         )}
         {step === 7 && (
           <SelectableOptions
-          question="Você se sente energizado após atividades físicas ?"
-          options={[
-            { label: "Nunca", icon: <FaStar /> },
-            { label: "Raramente", icon: <FaStar /> },
-            { label: "Ás vezes", icon: <FaStar /> },
-            { label: "Frequentemente", icon: <FaStar /> },
-            { label: "Sempre", icon: <FaStar /> },
-          ]}
-          multiple={false}
-          onSelectionChange={handleSelectionChange}
-          onContinue={handleContinue}
+            question="Você se sente energizado após atividades físicas ?"
+            options={[
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
+            ]}
+            multiple={false}
+            onSelectionChange={handleSelectionChange}
+            onContinue={handleContinue}
           />
         )}
         {step === 8 && (
           <SelectableOptions
-          question="Você tem dificuldade em manter um humor positivo ao longo do dia ?"
-          options={[
-            { label: "Nunca", icon: <FaStar /> },
-            { label: "Raramente", icon: <FaStar /> },
-            { label: "Ás vezes", icon: <FaStar /> },
-            { label: "Frequentemente", icon: <FaStar /> },
-            { label: "Sempre", icon: <FaStar /> },
-          ]}
-          multiple={false}
-          onSelectionChange={handleSelectionChange}
-          onContinue={handleContinue}
+            question="Você tem dificuldade em manter um humor positivo ao longo do dia ?"
+            options={[
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
+            ]}
+            multiple={false}
+            onSelectionChange={handleSelectionChange}
+            onContinue={handleContinue}
           />
         )}
         {step === 9 && (
@@ -159,7 +198,8 @@ function App() {
             title="Avaliação do nível de atenção"
             undertitle={
               <>
-                O próximo grupo de perguntas irá ajudar a entender o seu nível de atenção.
+                O próximo grupo de perguntas irá ajudar a entender o seu nível
+                de atenção.
                 <br />
                 <strong>Pronto para continuar?</strong>
               </>
@@ -172,11 +212,11 @@ function App() {
           <SelectableOptions
             question="Você consegue manter o foco em uma tarefa por um longo período ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-            { label: "Raramente", icon: <FaStar /> },
-            { label: "Ás vezes", icon: <FaStar /> },
-            { label: "Frequentemente", icon: <FaStar /> },
-            { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -187,11 +227,11 @@ function App() {
           <SelectableOptions
             question="Você se distrai facilmente em ambientes barulhentos ou movimentados ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -202,41 +242,41 @@ function App() {
           <SelectableOptions
             question="Você sente dificuldade em finalizar tarefas importantes ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
             onContinue={handleContinue}
           />
         )}
-         {step === 13 && (
+        {step === 13 && (
           <SelectableOptions
             question="Você procrastina frequentemente tarefas que considera difíceis ou tediosas ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
             onContinue={handleContinue}
           />
         )}
-         {step === 14 && (
+        {step === 14 && (
           <SelectableOptions
             question="Você tem facilidade em se concentrar em um único projeto por várias horas ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -256,11 +296,11 @@ function App() {
           <SelectableOptions
             question="Você se sente ansioso ou preocupado com frequência?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -271,11 +311,11 @@ function App() {
           <SelectableOptions
             question="Você tem dificuldade para relaxar e se desligar das preocupações diárias ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -286,11 +326,11 @@ function App() {
           <SelectableOptions
             question="Você experimenta sintomas físicos de ansiedade, como palpitações ou sudorese ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -301,11 +341,11 @@ function App() {
           <SelectableOptions
             question="Você sente que sua ansiedade interfere nas suas atividades diárias ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -316,11 +356,11 @@ function App() {
           <SelectableOptions
             question="Você consegue manter a calma em situações de estresse ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -342,11 +382,11 @@ function App() {
           <SelectableOptions
             question="Você pratica atividades físicas regularmente ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -357,11 +397,11 @@ function App() {
           <SelectableOptions
             question="Você mantém uma alimentação equilibrada e saudável ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -372,11 +412,11 @@ function App() {
           <SelectableOptions
             question="Você dedica tempo para hobbies ou atividades que gosta ?"
             options={[
-              { label: "Nunca", icon: <FaStar /> },
-              { label: "Raramente", icon: <FaStar /> },
-              { label: "Ás vezes", icon: <FaStar /> },
-              { label: "Frequentemente", icon: <FaStar /> },
-              { label: "Sempre", icon: <FaStar /> },
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
             ]}
             multiple={false}
             onSelectionChange={handleSelectionChange}
@@ -386,32 +426,32 @@ function App() {
 
         {step === 25 && (
           <SelectableOptions
-          question="Você sente que tem um bom equilíbrio entre trabalho e vida pessoal ?"
-          options={[
-            { label: "Nunca", icon: <FaStar /> },
-            { label: "Raramente", icon: <FaStar /> },
-            { label: "Ás vezes", icon: <FaStar /> },
-            { label: "Frequentemente", icon: <FaStar /> },
-            { label: "Sempre", icon: <FaStar /> },
-          ]}
-          multiple={false}
-          onSelectionChange={handleSelectionChange}
-          onContinue={handleContinue}
+            question="Você sente que tem um bom equilíbrio entre trabalho e vida pessoal ?"
+            options={[
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
+            ]}
+            multiple={false}
+            onSelectionChange={handleSelectionChange}
+            onContinue={handleContinue}
           />
         )}
         {step === 26 && (
           <SelectableOptions
-          question="Você dorme bem e acorda sentindo-se descansado ?"
-          options={[
-            { label: "Nunca", icon: <FaStar /> },
-            { label: "Raramente", icon: <FaStar /> },
-            { label: "Ás vezes", icon: <FaStar /> },
-            { label: "Frequentemente", icon: <FaStar /> },
-            { label: "Sempre", icon: <FaStar /> },
-          ]}
-          multiple={false}
-          onSelectionChange={handleSelectionChange}
-          onContinue={handleContinue}
+            question="Você dorme bem e acorda sentindo-se descansado ?"
+            options={[
+              { label: "❌ Nunca" },
+              { label: "😐 Raramente" },
+              { label: "🤔 Ás vezes" },
+              { label: "🙂 Frequentemente" },
+              { label: "✅ Sempre" },
+            ]}
+            multiple={false}
+            onSelectionChange={handleSelectionChange}
+            onContinue={handleContinue}
           />
         )}
 
@@ -431,7 +471,11 @@ function App() {
             onContinue={handleContinue}
           />
         )}
-        {step === 29 && <SendForm />}
+        {step === 29 && <SendForm onSubmit={handleFormSubmit} />}
+
+        {step === 30 && (
+          <ResultMessage result={calculateResult()} userName={userName} />
+        )}
       </div>
     </div>
   );
