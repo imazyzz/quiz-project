@@ -44,7 +44,6 @@ const SendForm = ({ onSubmit }) => {
           type="tel"
           id="telefone"
           name="telefone"
-          pattern="\(\d{2}\) \d{5}-\d{4}"
           placeholder="(XX) XXXXX-XXXX"
           required
         />

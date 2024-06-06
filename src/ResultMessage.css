@@ -42,4 +42,9 @@
   background-color: #8555d7;
   font-weight: bold;
   padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-result:hover {
+  transform: scale(1.05);
 }

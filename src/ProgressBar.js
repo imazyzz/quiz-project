@@ -3,7 +3,7 @@ import "./ProgressBar.css";
 
 const ProgressBar = ({ currentStep }) => {
   // const totalSteps = 30; // Total de steps no quiz
-  const steps = [2, 8, 12, 18, 24, 30];
+  const steps = [2, 9, 15, 18, 21, 30];
   // const stepIntervals = totalSteps / (steps.length - 1);
 
   return (
