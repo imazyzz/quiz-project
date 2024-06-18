@@ -7,17 +7,17 @@ import Header from "./Header";
 import SendForm from "./SendForm";
 import ResultMessage from "./ResultMessage";
 import "./App.css";
-import QuoteComponent from "./QuoteComponent";
+// import QuoteComponent from "./QuoteComponent";
 import SelectableOptions from "./SelectableOptions";
 import ninety from "./images/ninety.webp";
 import atitude from "./images/atitude.webp";
 import great from "./images/great-job.webp";
 import almost from "./images/almost.89489eb9422adf3186ae.webp";
-import habits from "./images/habits.cc39320a45ee8b5d463b.webp";
+// import habits from "./images/habits.cc39320a45ee8b5d463b.webp";
 import gotThis from "./images/got_this.46c739f11ad2bc0f8902.webp";
 import power from "./images/willpower.96f0924c2e52b676557f.webp";
-import loading from "./images/—Pngtree—image icon - vector loading_4979442.png";
-import { FaStar } from "react-icons/fa";
+// import loading from "./images/—Pngtree—image icon - vector loading_4979442.png";
+// import { FaStar } from "react-icons/fa";
 
 function App() {
   const [step, setStep] = useState(1);
@@ -41,10 +41,10 @@ function App() {
     setStep(4);
   };
 
-  const handleQuoteComponent = (answer) => {
-    console.log(`Resposta selecionada: ${answer}`);
-    setStep(step + 1);
-  };
+  // const handleQuoteComponent = (answer) => {
+  //   console.log(`Resposta selecionada: ${answer}`);
+  //   setStep(step + 1);
+  // };
 
   // FUNCIONAMENTO DO SELECT VÁRIOS + SISTEMA DE PONTUAÇÃO
 
@@ -85,12 +85,12 @@ function App() {
 
   const handleFormSubmit = (name) => {
     setUserName(name);
-    setStep(step + 1); // Incrementa o passo
+    setStep(step + 1);
   };
 
   const handleContinue = () => {
     console.log("Continuar...");
-    setStep(step + 1); // Incrementa o passo
+    setStep(step + 1);
   };
 
   return (
@@ -100,6 +100,7 @@ function App() {
           curStep={step}
           totStep={totalSteps}
           onBackButtonClick={handleBackButtonClick}
+          showBackButton={step !== 29 && step !== 30}
         />
         <ProgressBar currentStep={step} />
         {step === 1 && <GenderSelection onGenderSelect={handleGenderSelect} />}
