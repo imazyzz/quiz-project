@@ -59,40 +59,6 @@ const SelectableOptions = ({
 
 export default SelectableOptions;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState } from "react";
 // import "./SelectableOptions.css"; // Create this CSS file for styling
 

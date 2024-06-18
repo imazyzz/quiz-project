@@ -50,13 +50,13 @@
   max-width: 345px;
   min-height: 70px;
   padding: 0 15px;
-  transition: none;
   width: 100%;
   font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.option-item:hover {
+.option-item.selected {
   background-color: #f0f0f0;
 }
 

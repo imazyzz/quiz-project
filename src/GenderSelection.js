@@ -10,13 +10,14 @@ const GenderSelection = ({ onGenderSelect }) => {
   return (
     <div>
       <h1 className="title">
-        Saia da Armadilha<br></br>
-        <span className="title-span">do Burnout</span>
+        Melhore Seu Foco e<br></br>
+        <span className="title-span">Reduza a Ansiedade</span>
       </h1>
 
       <p className="subtitle">
-        Sua jornada para uma vida mais equilibrada<br></br> e plena começa
-        agora!
+        Sua jornada para uma vida mais equilibrada e produtiva começa agora!
+        Responda ao nosso quiz e receba dicas personalizadas para aumentar sua
+        energia e bem-estar.
       </p>
 
       <div className="gender-selection">

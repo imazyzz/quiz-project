@@ -10,7 +10,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #ddd;
+  background-color: #afafaf;
   z-index: 1; /* Mantém as bolinhas acima das linhas */
 }
 
@@ -23,6 +23,7 @@
   height: 2px;
   margin: 0 5px; /* Reduz a margem para diminuir os espaços */
   overflow: hidden;
+  background-color: #d3d3d3;
 }
 
 .progress-line {

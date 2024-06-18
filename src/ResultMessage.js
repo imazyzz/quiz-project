@@ -8,17 +8,19 @@ const ResultMessage = ({ result, userName }) => {
       case "Baixos Níveis de Dopamina":
         return (
           <>
-            <p>Parabéns {userName},</p>
+            <p className="congrats">
+              Confira seu resultado abaixo, {userName}:
+            </p>
             <p>
-              <p>
-                Em até 5 minutos você receberá os seus 3 ebooks gratuitos para
-                auxiliar nessa jornada. Confira seu resultado abaixo:
-              </p>
               Com base nas suas respostas, parece que você está enfrentando
-              baixos níveis de dopamina. Isso pode estar afetando sua motivação,
-              prazer nas atividades diárias e satisfação geral. Aqui estão
-              algumas dicas práticas para aumentar seus níveis de dopamina
-              naturalmente:
+              <span className="congrats"> baixos níveis de dopamina.</span> Isso
+              pode estar afetando sua motivação, prazer nas atividades diárias e
+              satisfação geral.
+            </p>
+
+            <p>
+              Aqui estão algumas dicas práticas para aumentar seus níveis de
+              dopamina naturalmente:
             </p>
             <ul>
               <li>
@@ -38,28 +40,28 @@ const ResultMessage = ({ result, userName }) => {
                 recompensas podem estimular a produção de dopamina.
               </li>
             </ul>
-            <p>
-              Experimente essas estratégias e veja como elas podem melhorar sua
-              motivação e bem-estar. Se precisar de mais orientação, nosso curso
-              DopaminaDólares oferece um programa completo para transformar sua
-              vida.
+            <p className="congrats">
+              Em até 5 minutos, você receberá gratuitamente 10 dicas para
+              aumentar sua dopamina e energia de forma natural, além de um
+              e-book sobre o Maestro da Mente, a Dopamina
             </p>
           </>
         );
       case "Baixos Níveis de Atenção":
         return (
           <>
-            <p>Parabéns {userName},</p>
+            <p className="congrats">
+              Confira seu resultado abaixo, {userName}:
+            </p>
 
             <p>
-              Em até 5 minutos você receberá os seus 3 ebooks gratuitos para
-              auxiliar nessa jornada. Confira seu resultado abaixo:
-            </p>
-            <p>
               Pelas suas respostas, notamos que você pode estar enfrentando
-              dificuldades com concentração e foco. Aqui estão algumas sugestões
-              para melhorar sua atenção:
+              <span className="congrats">
+                dificuldades com concentração e foco.
+              </span>
             </p>
+
+            <p>Aqui estão algumas sugestões para melhorar sua atenção:</p>
             <ul>
               <li>
                 Ambiente de Trabalho Organizado: Reduza as distrações ao seu
@@ -78,27 +80,28 @@ const ResultMessage = ({ result, userName }) => {
                 ajudar a melhorar seu foco e atenção.
               </li>
             </ul>
-            <p>
-              Implementando essas dicas, você deve notar uma melhora
-              significativa na sua capacidade de concentração. Para mais
-              estratégias detalhadas, considere nosso curso DopaminaDólares.
+            <p className="congrats">
+              Em até 5 minutos, você receberá gratuitamente 10 dicas para
+              aumentar sua dopamina e energia de forma natural, além de um
+              e-book sobre o Maestro da Mente, a Dopamina
             </p>
           </>
         );
       case "Altos Níveis de Ansiedade":
         return (
           <>
-            <p>Parabéns {userName},</p>
+            <p className="congrats">
+              Confira seu resultado abaixo, {userName}:
+            </p>
 
             <p>
-              Em até 5 minutos você receberá os seus 3 ebooks gratuitos para
-              auxiliar nessa jornada. Confira seu resultado abaixo:
+              Pelas suas respostas, parece que você está lidando com{" "}
+              <span className="congrats">níveis elevados de ansiedade.</span>{" "}
             </p>
+
             <p>
-              Pelas suas respostas, parece que você está lidando com níveis
-              elevados de ansiedade. Isso pode impactar sua capacidade de
-              relaxar e aproveitar a vida. Aqui estão algumas dicas para ajudar
-              a reduzir sua ansiedade:
+              Isso pode impactar sua capacidade de relaxar e aproveitar a vida.
+              Aqui estão algumas dicas para ajudar a reduzir sua ansiedade:
             </p>
             <ul>
               <li>
@@ -118,28 +121,30 @@ const ResultMessage = ({ result, userName }) => {
                 familiares ou um terapeuta pode ser muito benéfico.
               </li>
             </ul>
-            <p>
-              Essas estratégias podem ajudar a reduzir sua ansiedade e melhorar
-              sua qualidade de vida. Nosso curso DopaminaDólares oferece mais
-              técnicas e ferramentas para controlar a ansiedade de forma eficaz.
+            <p className="congrats">
+              Em até 5 minutos, você receberá gratuitamente 10 dicas para
+              aumentar sua dopamina e energia de forma natural, além de um
+              e-book sobre o Maestro da Mente, a Dopamina
             </p>
           </>
         );
       case "Comportamentos Saudáveis":
         return (
           <>
-            <p>Parabéns {userName},</p>
-
-            <p>
-              Em até 5 minutos você receberá os seus 3 ebooks gratuitos para
-              auxiliar nessa jornada. Confira seu resultado abaixo:
+            <p className="congrats">
+              Confira seu resultado abaixo, {userName}:
             </p>
+
             <p>
               Parabéns! Suas respostas indicam que você já pratica muitos
               comportamentos saudáveis. Isso é excelente para manter bons níveis
-              de dopamina, atenção e reduzir a ansiedade. Aqui estão algumas
-              sugestões adicionais para continuar melhorando:
+              de dopamina, atenção e reduzir a ansiedade.
             </p>
+
+            <p>
+              Aqui estão algumas sugestões adicionais para continuar melhorando:
+            </p>
+
             <ul>
               <li>
                 Aprimore Suas Práticas Atuais: Experimente novas formas de
@@ -158,10 +163,10 @@ const ResultMessage = ({ result, userName }) => {
                 interesse para compartilhar experiências e aprender com outros.
               </li>
             </ul>
-            <p>
-              Você está no caminho certo! Continue assim e, se quiser aprofundar
-              seu conhecimento, nosso curso DopaminaDólares pode oferecer mais
-              insights valiosos.
+            <p className="congrats">
+              Em até 5 minutos, você receberá gratuitamente 10 dicas para
+              aumentar sua dopamina e energia de forma natural, além de um
+              e-book sobre o Maestro da Mente, a Dopamina
             </p>
           </>
         );
@@ -174,8 +179,8 @@ const ResultMessage = ({ result, userName }) => {
     <div className="ResultMessage">
       {getMessage(result)}
 
-      <a href="#" className="btn-result">
-        Conheça o Dopamina Dólares
+      <a href="https://www.dopaminadolares.com.br" className="btn-result">
+        Transforme Sua Ansiedade
       </a>
     </div>
   );
