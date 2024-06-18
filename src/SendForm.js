@@ -1,16 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SendForm.css";
 
 const SendForm = ({ onSubmit }) => {
   const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const paramsObj = {};
+
+    for (const [key, value] of queryParams) {
+      paramsObj[key] = value;
+    }
+
+    if (Object.keys(paramsObj).length > 0) {
+      const hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'origin_query';
+      hiddenInput.value = JSON.stringify(paramsObj);
+      document.querySelector('form').appendChild(hiddenInput);
+    }
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(userName);
+    const form = event.target;
+    form.submit();
   };
 
-  const handleChange = (e) => {
-    setUserName(e.target.value);
+  const handleNameChange = (e) => setUserName(e.target.value);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+    value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+    setPhone(value);
   };
 
   return (
@@ -20,14 +45,18 @@ const SendForm = ({ onSubmit }) => {
         Receba o resultado do seu quiz + 3 ebooks totalmente gratuitos!
       </p>
 
-      <form onSubmit={handleSubmit} method="post">
+      <form
+        onSubmit={handleSubmit}
+        method="post"
+        action="https://webhook.sellflux.com/webhook/v2/form/lead/3d6e0d04427db110b6e8106f2cc4f25c?not_query=true"
+      >
         <label className="form-label">Nome</label>
         <input
           type="text"
           id="name"
           name="name"
           value={userName}
-          onChange={handleChange}
+          onChange={handleNameChange}
           placeholder="Digite seu nome"
           required
         ></input>
@@ -36,6 +65,8 @@ const SendForm = ({ onSubmit }) => {
           type="email"
           id="email"
           name="email"
+          value={email}
+          onChange={handleEmailChange}
           placeholder="Digite seu endereço de e-mail"
           required
         ></input>
@@ -44,6 +75,8 @@ const SendForm = ({ onSubmit }) => {
           type="tel"
           id="telefone"
           name="telefone"
+          value={phone}
+          onChange={handlePhoneChange}
           placeholder="(XX) XXXXX-XXXX"
           required
         />
