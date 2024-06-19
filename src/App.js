@@ -85,7 +85,7 @@ function App() {
 
   const handleFormSubmit = (name) => {
     setUserName(name);
-    setStep(step + 1);
+    setStep(30);
   };
 
   const handleContinue = () => {

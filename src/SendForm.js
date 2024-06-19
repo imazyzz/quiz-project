@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./SendForm.css";
 
 const SendForm = ({ onSubmit }) => {
@@ -10,23 +11,43 @@ const SendForm = ({ onSubmit }) => {
     const queryParams = new URLSearchParams(window.location.search);
     const paramsObj = {};
 
-    for (const [key, value] of queryParams) {
+    for (const [key, value] of queryParams.entries()) {
       paramsObj[key] = value;
     }
 
     if (Object.keys(paramsObj).length > 0) {
-      const hiddenInput = document.createElement('input');
-      hiddenInput.type = 'hidden';
-      hiddenInput.name = 'origin_query';
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "origin_query";
       hiddenInput.value = JSON.stringify(paramsObj);
-      document.querySelector('form').appendChild(hiddenInput);
+      document.querySelector("form").appendChild(hiddenInput);
     }
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const form = event.target;
-    form.submit();
+
+    const webhookUrl =
+      "https://webhook.sellflux.app/webhook/custom/lead/3d6e0d04427db110b6e8106f2cc4f25c?name=name&email=email&phone=phone";
+
+    const leadData = {
+      name: userName,
+      email: email,
+      telefone: phone,
+      origin: "custom",
+      custom_fields: {
+        name: "name",
+        email: "email",
+        phone: "telefone",
+      },
+    };
+
+    try {
+      await axios.post(webhookUrl, leadData);
+      onSubmit();
+    } catch (error) {
+      console.error("Erro ao enviar dados para o webhook:", error);
+    }
   };
 
   const handleNameChange = (e) => setUserName(e.target.value);
@@ -45,11 +66,7 @@ const SendForm = ({ onSubmit }) => {
         Receba o resultado do seu quiz + 3 ebooks totalmente gratuitos!
       </p>
 
-      <form
-        onSubmit={handleSubmit}
-        method="post"
-        action="https://webhook.sellflux.com/webhook/v2/form/lead/3d6e0d04427db110b6e8106f2cc4f25c?not_query=true"
-      >
+      <form onSubmit={handleSubmit}>
         <label className="form-label">Nome</label>
         <input
           type="text"
