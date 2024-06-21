@@ -100,10 +100,6 @@ function App() {
     setStep(step + 1);
   };
 
-  const skipAll = () => {
-    setStep(29);
-  };
-
   return (
     <div className="App">
       <div className="container">
@@ -126,7 +122,7 @@ function App() {
               </>
             }
             image={ninety}
-            onContinue={skipAll}
+            onContinue={handleContinue}
           />
         )}
         {step === 3 && <AgeQuestion onAgeSubmit={handleAgeSubmit} />}
