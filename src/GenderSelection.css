@@ -10,6 +10,10 @@
   line-height: 1.5;
 }
 
+.subtitle span {
+  font-weight: bold;
+}
+
 .title-span {
   background-color: #dac7fa;
   color: #8555d7;

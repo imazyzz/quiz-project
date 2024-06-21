@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GenderSelection from "./GenderSelection";
 import AgeQuestion from "./AgeQuestion";
 import ProgressPage from "./ProgressPage";
@@ -24,6 +24,12 @@ function App() {
   const totalSteps = 30;
   const [responses, setResponses] = useState([]);
   const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    if (step === 30) {
+      window.fbq("track", "Lead");
+    }
+  }, [step]);
 
   const handleBackButtonClick = () => {
     if (step > 1) {
@@ -86,11 +92,16 @@ function App() {
   const handleFormSubmit = (name) => {
     setUserName(name);
     setStep(30);
+    // window.fbq("track", "Lead");
   };
 
   const handleContinue = () => {
     console.log("Continuar...");
     setStep(step + 1);
+  };
+
+  const skipAll = () => {
+    setStep(29);
   };
 
   return (
@@ -100,7 +111,7 @@ function App() {
           curStep={step}
           totStep={totalSteps}
           onBackButtonClick={handleBackButtonClick}
-          showBackButton={step !== 29 && step !== 30}
+          showBackButton={step !== 1 && step !== 29 && step !== 30}
         />
         <ProgressBar currentStep={step} />
         {step === 1 && <GenderSelection onGenderSelect={handleGenderSelect} />}
@@ -115,7 +126,7 @@ function App() {
               </>
             }
             image={ninety}
-            onContinue={handleContinue}
+            onContinue={skipAll}
           />
         )}
         {step === 3 && <AgeQuestion onAgeSubmit={handleAgeSubmit} />}

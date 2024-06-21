@@ -44,7 +44,7 @@ const SendForm = ({ onSubmit }) => {
 
     try {
       await axios.post(webhookUrl, leadData);
-      onSubmit();
+      onSubmit(userName);
     } catch (error) {
       console.error("Erro ao enviar dados para o webhook:", error);
     }
@@ -98,7 +98,7 @@ const SendForm = ({ onSubmit }) => {
           required
         />
         <button type="submit" className="form-btn">
-          Receber Ebooks
+          Receber Resultado
         </button>
       </form>
     </div>

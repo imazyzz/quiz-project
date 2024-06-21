@@ -15,9 +15,13 @@ const GenderSelection = ({ onGenderSelect }) => {
       </h1>
 
       <p className="subtitle">
-        Sua jornada para uma vida mais equilibrada e produtiva começa agora!
-        Responda ao nosso quiz e receba dicas personalizadas para aumentar sua
-        energia e bem-estar.
+        Sua jornada para uma vida mais equilibrada e produtiva começa agora!{" "}
+        <span>
+          {" "}
+          Responda nosso quiz e receba dicas Personalizadas de acordo com seus
+          níveis de dopamina correspondidos no resultado ao final
+        </span>{" "}
+        deste quiz.
       </p>
 
       <div className="gender-selection">

@@ -8,14 +8,15 @@ const ResultMessage = ({ result, userName }) => {
       case "Baixos Níveis de Dopamina":
         return (
           <>
-            <p className="congrats">
-              Confira seu resultado abaixo, {userName}:
-            </p>
+            <p className="congrats">Confira seu resultado abaixo, {userName}</p>
             <p>
               Com base nas suas respostas, parece que você está enfrentando
-              <span className="congrats"> baixos níveis de dopamina.</span> Isso
-              pode estar afetando sua motivação, prazer nas atividades diárias e
-              satisfação geral.
+              <span className="congrats">
+                {" "}
+                baixos níveis de dopamina.{" "}
+              </span>{" "}
+              Isso pode estar afetando sua motivação, prazer nas atividades
+              diárias e satisfação geral.
             </p>
 
             <p>
@@ -50,9 +51,7 @@ const ResultMessage = ({ result, userName }) => {
       case "Baixos Níveis de Atenção":
         return (
           <>
-            <p className="congrats">
-              Confira seu resultado abaixo, {userName}:
-            </p>
+            <p className="congrats">Confira seu resultado abaixo, {userName}</p>
 
             <p>
               Pelas suas respostas, notamos que você pode estar enfrentando
@@ -90,9 +89,7 @@ const ResultMessage = ({ result, userName }) => {
       case "Altos Níveis de Ansiedade":
         return (
           <>
-            <p className="congrats">
-              Confira seu resultado abaixo, {userName}:
-            </p>
+            <p className="congrats">Confira seu resultado abaixo, {userName}</p>
 
             <p>
               Pelas suas respostas, parece que você está lidando com{" "}
@@ -131,9 +128,7 @@ const ResultMessage = ({ result, userName }) => {
       case "Comportamentos Saudáveis":
         return (
           <>
-            <p className="congrats">
-              Confira seu resultado abaixo, {userName}:
-            </p>
+            <p className="congrats">Confira seu resultado abaixo, {userName}</p>
 
             <p>
               Parabéns! Suas respostas indicam que você já pratica muitos
@@ -174,7 +169,6 @@ const ResultMessage = ({ result, userName }) => {
         return "Erro ao calcular resultado.";
     }
   };
-
   return (
     <div className="ResultMessage">
       {getMessage(result)}
